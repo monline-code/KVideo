@@ -22,6 +22,7 @@ function HomePage() {
     totalSources,
     handleSearch,
     handleReset,
+    handleCancelSearch,
   } = useHomePage();
 
   // Real-time latency pinging
@@ -48,6 +49,7 @@ function HomePage() {
         <SearchForm
           onSearch={handleSearch}
           onClear={handleReset}
+          onCancelSearch={handleCancelSearch}
           isLoading={loading}
           initialQuery={query}
           currentSource=""
@@ -69,7 +71,11 @@ function HomePage() {
         )}
 
         {/* Popular Features - Homepage */}
-        {!loading && !hasSearched && <PopularFeatures onSearch={handleSearch} />}
+        {!loading && !hasSearched && (
+          <>
+            <PopularFeatures onSearch={handleSearch} />
+          </>
+        )}
 
         {/* No Results */}
         {!loading && hasSearched && results.length === 0 && (
